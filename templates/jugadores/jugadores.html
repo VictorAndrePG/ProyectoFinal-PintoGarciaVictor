@@ -30,10 +30,11 @@
     <p>
         {% for jugador in jugadores %}
             <li>{{ jugador.nombre }} - Puntaje: {{ jugador.puntaje }}</li><br>
+{% if user.is_authenticated %}
            <p>
                 <a href="{% url 'JugadorDetalle' jugador.id %}">Detalles</a>
             </p>
-{% if user.is_authenticated %}
+
             <p>
                 <a href="{% url 'editar_jugador' jugador.id %}">Editar</a>
             </p>
