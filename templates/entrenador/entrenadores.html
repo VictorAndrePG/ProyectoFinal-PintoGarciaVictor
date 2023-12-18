@@ -1,0 +1,47 @@
+<!-- AppFutbol/templates/entrenadores.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenadores</title>
+</head>
+<body>
+{% extends 'base/base.html' %}
+{% block cambio %}
+    <h1>Var-ristas</h1>
+    <p>Opiniones de Fans que algo saben de futbol</p>
+<hr>
+    <h1>Listado de Entrenadores</h1>
+    <div>
+    <form action="/futbol/buscar_entrenadores" method="GET">
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Buscar">
+
+    </form>
+    </div>
+        <a href="{% url 'agregar_entrenador' %}">Agregar Entrenador</a><br>
+
+        <hr>
+    <p>
+        {% for entrenador in entrenadores %}
+            <li>{{ entrenador.nombre }} - Puntaje: {{ entrenador.puntaje }}</li>
+            <p>
+                <a href="{% url 'EntrenadorDetalle' entrenador.id %}">Detalles</a>
+            </p>
+            <p>
+                <a href="{% url 'editar_entrenador' entrenador.id %}">Editar</a>
+            </p>
+            <p>
+                <a href="{% url 'EntrenadorEliminar' entrenador.id %}">Eliminar</a>
+            </p>
+
+
+            <hr>
+        {% endfor %}
+    </p>
+{% endblock %}
+</body>
+</html>

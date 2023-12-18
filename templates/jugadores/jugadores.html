@@ -1,0 +1,48 @@
+<!-- AppFutbol/templates/jugadores.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugadores</title>
+</head>
+<body>
+{% extends 'base/base.html' %}
+{% block cambio %}
+    <h1>Var-ristas</h1>
+    <p>Opiniones de Fans que algo saben de futbol</p>
+<hr>
+    <h1>Listado de Jugadores</h1>
+    <div>
+    <form action="/futbol/buscar_jugadores" method="GET">
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Buscar">
+
+    </form>
+    </div>
+    <a href="{% url 'agregar_jugador' %}">Agregar Jugador</a><br>
+
+    <hr>
+
+    <p>
+        {% for jugador in jugadores %}
+            <li>{{ jugador.nombre }} - Puntaje: {{ jugador.puntaje }}</li><br>
+           <p>
+                <a href="{% url 'JugadorDetalle' jugador.id %}">Detalles</a>
+            </p>
+            <p>
+                <a href="{% url 'editar_jugador' jugador.id %}">Editar</a>
+            </p>
+            <p>
+                <a href="{% url 'JugadorEliminar' jugador.id %}">Eliminar</a>
+            </p>
+            <hr>
+        {% endfor %}
+    </p>
+
+{% endblock %}
+
+</body>
+</html>

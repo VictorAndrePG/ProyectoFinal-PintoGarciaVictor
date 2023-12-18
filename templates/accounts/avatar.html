@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avatar</title>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data">
+     <h2>Editar Foto de Avatar</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Crear Avatar"> <br>
+    <a href="{% url 'home' %}">Volver</a>
+
+</form>
+
+</body>
+</html>

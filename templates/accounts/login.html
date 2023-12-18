@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form method="POST">
+    <h1>Inicio de sesion</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Iniciar sesion"> <br>
+    <a href="{% url 'home' %}">Volver</a>
+
+
+</form>
+</body>
+</html>

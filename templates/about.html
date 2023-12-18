@@ -1,0 +1,32 @@
+<!-- AppFutbol/templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Var-ristas</title>
+    <style>
+
+        body {
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+{% extends 'base/base.html' %}
+{% block cambio %}
+
+    <p>Hola, soy Victor Pinto, fan del futbol, y este proyecto es una página que nos permite interactuar a los amantes del deporte calificando de forma "mas o menos" objetiva el rendimiento de lasprincipales figuras en el campo: Entrenadores y Jugadores, valorando como un total al Equipo. </p><br>
+    <p>No se trata de ser un analista experto, sino disfrutar el deporte</p>
+{% endblock %}
+</body>
+</html>
