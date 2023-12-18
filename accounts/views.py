@@ -1,14 +1,16 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
+from django.views.generic import CreateView, ListView, DeleteView
 from pyexpat.errors import messages
 
 from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm
-from accounts.models import Avatar
+from accounts.models import Avatar, Mensaje
 
 
 class Login(LoginView):
@@ -79,3 +81,34 @@ def logout_view(request):
     logout(request)
     # Puedes redirigir a donde desees después del cierre de sesión
     return redirect('home')
+
+#------------------------------------------
+class MensajeCreate(CreateView):
+    model = Mensaje
+    fields = '__all__'
+    template_name = 'mensajes/mensaje.html'
+    success_url = reverse_lazy('home')
+
+
+class MensajeList(LoginRequiredMixin, ListView):
+    model = Mensaje
+    template_name = 'mensajes/mensaje_list.html'
+    context_object_name = "mensajes"
+
+    def get_queryset(self):
+        return Mensaje.objects.filter(destinatario=self.request.user.id).all()
+    def handle_no_permission(self):
+        return render(self.request, "mensajes/not_found.html")
+
+
+class MensajeDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Mensaje
+    success_url = reverse_lazy("mensaje-list")
+    template_name = 'mensajes/mensaje_delete.html'
+    def test_func(self):
+        user_id = self.request.user.id
+        mensaje_id = self.kwargs.get('pk')
+        return Mensaje.objects.filter(destinatario=user_id, id=mensaje_id).exists()
+
+    def handle_no_permission(self):
+        return render(self.request, "mensajes/not_found.html")

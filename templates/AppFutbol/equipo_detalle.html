@@ -8,9 +8,17 @@
 
     <p>El nombre del equipo es: <b>{{equipo.nombre}}</b></p>
     <p>Puntaje: {{equipo.puntaje}}</p>
+
     {% if usuario_creacion %}
         <p>Autor: {{ usuario_creacion.username }}</p>
     {% endif %}
+
+     {% if equipo.imagen %}
+        <img src="{{ equipo.imagen.url }}" alt="Imagen del Equipo" width="300">
+    {% else %}
+        <p>No hay imagen disponible para este equipo.</p>
+    {% endif %}
+
     <p>
         <a href="{% url 'mostrar_equipos' %}">Lista de Equipos</a>
     </p>

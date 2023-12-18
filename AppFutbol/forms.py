@@ -39,7 +39,10 @@ class EntrenadorForm(forms.ModelForm):
 
     class Meta:
         model = Entrenador
-        fields = ['nombre', 'puntaje']
+        fields = ['nombre', 'puntaje', 'imagen']
+
+    def __init__(self, *args, **kwargs):
+        super(EntrenadorForm, self).__init__(*args, **kwargs)
 
 
 class BusquedaFormJugador(forms.Form):

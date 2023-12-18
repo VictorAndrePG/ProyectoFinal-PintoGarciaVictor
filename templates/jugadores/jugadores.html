@@ -22,8 +22,9 @@
 
     </form>
     </div>
+{% if user.is_authenticated %}
     <a href="{% url 'agregar_jugador' %}">Agregar Jugador</a><br>
-
+{% endif %}
     <hr>
 
     <p>
@@ -32,12 +33,14 @@
            <p>
                 <a href="{% url 'JugadorDetalle' jugador.id %}">Detalles</a>
             </p>
+{% if user.is_authenticated %}
             <p>
                 <a href="{% url 'editar_jugador' jugador.id %}">Editar</a>
             </p>
             <p>
                 <a href="{% url 'JugadorEliminar' jugador.id %}">Eliminar</a>
             </p>
+{% endif %}
             <hr>
         {% endfor %}
     </p>

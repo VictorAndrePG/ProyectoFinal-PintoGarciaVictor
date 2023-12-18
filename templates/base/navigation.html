@@ -20,6 +20,8 @@
                         {% if user.is_authenticated %}
                         <a class="nav-item"><a class="nav-link" href="{% url 'Editar' %}"><b>Editar usuario</b></a>
                         <a class="nav-item"><a class="nav-link" href="{% url 'Avatar' %}"><b>Avatar</b></a>
+                            <a class="nav-item"><a class="nav-link" href="{% url 'mensaje-create' %}"><b>Send</b></a>
+                                <a class="nav-item"><a class="nav-link" href="{% url 'mensaje-list' %}"><b>Chat</b></a>
                         <a class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><b>Logout</b></a>
                         {% else %}
                             <a class="nav-item"><a class="nav-link" href="{% url 'login' %}"><b>Login</b></a>

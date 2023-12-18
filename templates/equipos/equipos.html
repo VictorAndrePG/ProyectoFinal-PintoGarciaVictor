@@ -23,7 +23,9 @@
 
     </form>
     </div>
+{% if user.is_authenticated %}
     <a href="{% url 'agregar_equipo' %}">Agregar Equipo</a> <br>
+{% endif %}
 
             <hr>
 
@@ -31,15 +33,19 @@
     <p>
         {% for equipo in equipos %}
             <li>{{ equipo.nombre }} - Puntaje: {{ equipo.puntaje }}</li> <br>
+            {% if user.is_authenticated %}
             <p>
                 <a href="{% url 'EquipoDetalle' equipo.id %}">Detalles</a>
             </p>
+
             <p>
             <a href="{% url 'editar_equipo' equipo.id %}">Editar</a>
             </p>
+
             <p>
             <a href="{% url 'EquipoEliminar' equipo.id %}">Eliminar</a>
             </p>
+            {% endif %}
 
 
             <hr>

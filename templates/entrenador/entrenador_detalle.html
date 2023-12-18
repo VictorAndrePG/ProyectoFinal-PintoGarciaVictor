@@ -7,6 +7,13 @@
 <body>
     <p>El nombre del entrenador es: <b>{{entrenador.nombre}}</b></p>
     <p>Puntaje: {{entrenador.puntaje}}</p>
+
+    {% if entrenador.imagen %}
+        <img src="{{ entrenador.imagen.url }}" alt="Imagen del Entrenador" width="300">
+    {% else %}
+        <p>No hay imagen disponible.</p>
+    {% endif %}
+
     <p>
         <a href="{% url 'mostrar_entrenadores' %}">Lista de Entrenadores</a>
     </p>

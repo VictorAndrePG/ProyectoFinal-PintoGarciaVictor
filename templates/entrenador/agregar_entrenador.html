@@ -1,19 +1,80 @@
-<!-- AppFutbol/templates/agregar_equipo.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Entrenador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007BFF;
+        }
+    </style>
 </head>
 <body>
     <h1>Agregar Entrenador</h1>
-    <form method="post" action="{% url 'agregar_entrenador' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
+<form method="post" action="{% url 'agregar_entrenador' %}">
+{% csrf_token %}
+        <label for="{{ form.nombre.id_for_label }}">Nombre del Entrenador:</label>
+        {{ form.nombre }}
+
+        <label for="{{ form.puntaje.id_for_label }}">Puntaje (0-10):</label>
+        {{ form.puntaje }}
         <span style="color: red;">{{ form.puntaje.errors }}</span> <!-- Muestra el mensaje de error del puntaje -->
+
+        <label for="{{ form.imagen.id_for_label }}">Imagen:</label>
+        {{ form.imagen }}
+
         <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'mostrar_entrenadores' %}">Volver a la lista de Entrenadores</a>
+</form>
+<a href="{% url 'mostrar_entrenadores' %}">Volver a la lista de Entrenadores</a>
 </body>
 </html>

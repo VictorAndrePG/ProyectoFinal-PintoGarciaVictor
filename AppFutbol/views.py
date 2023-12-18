@@ -10,7 +10,7 @@ class EquipoDetalle(LoginRequiredMixin, DetailView):
     model = Equipo
     template_name = "AppFutbol/equipo_detalle.html"
 
-@login_required
+
 def editar_equipo(request, equipo_id):
     equipo = get_object_or_404(Equipo, pk=equipo_id)
 
@@ -37,7 +37,7 @@ class JugadorDetalle(LoginRequiredMixin, DetailView):
     model = Jugador
     template_name = "jugadores/jugador_detalle.html"
 
-@login_required
+
 def editar_jugador(request, jugador_id):
     jugador = get_object_or_404(Jugador, pk=jugador_id)
 
@@ -62,7 +62,7 @@ class EntrenadorDetalle(LoginRequiredMixin, DetailView):
     model = Entrenador
     template_name = "entrenador/entrenador_detalle.html"
 
-@login_required
+
 def editar_entrenador(request, entrenador_id):
     entrenador = get_object_or_404(Entrenador, pk=entrenador_id)
 
@@ -77,6 +77,7 @@ def editar_entrenador(request, entrenador_id):
     contexto = {'form': form, 'entrenador': entrenador}
     return render(request, 'entrenador/editar_entrenador.html', contexto)
 
+
 class EntrenadorEliminar(DeleteView):
     model = Entrenador
     template_name = "entrenador/eliminar_entrenador.html"
@@ -87,7 +88,7 @@ def mostrar_equipos(request):
     contexto = {"equipos": equipos, "form":BusquedaFormEquipo()}
     return render(request, 'equipos/equipos.html', contexto)
 
-@login_required
+
 def agregar_equipo(request):
     if request.method == 'POST':
         form = EquipoForm(request.POST, request.FILES)
@@ -111,6 +112,7 @@ def busqueda_equipo(request):
     }
     return render(request, "equipos/equipos.html", contexto)
 
+
 def puntuar_equipo(request, equipo_id):
     if request.method == 'POST':
         puntaje = request.POST.get('puntaje')
@@ -127,7 +129,7 @@ def mostrar_jugadores(request):
     contexto = {"jugadores": jugadores, "form":BusquedaFormJugador()}
     return render(request, 'jugadores/jugadores.html', contexto)
 
-@login_required
+
 def agregar_jugador(request):
     if request.method == 'POST':
         form = JugadorForm(request.POST)
@@ -153,6 +155,7 @@ def busqueda_jugador(request):
     }
     return render(request, "jugadores/jugadores.html", contexto)
 
+
 def puntuar_jugador(request, jugador_id):
     if request.method == 'POST':
         puntaje = request.POST.get('puntaje')
@@ -168,7 +171,7 @@ def mostrar_entrenadores(request):
     contexto = {"entrenadores": entrenadores, "form":BusquedaFormEntrenador()}
     return render(request, 'entrenador/entrenadores.html', contexto)
 
-@login_required
+
 def agregar_entrenador(request):
     if request.method == 'POST':
         form = EntrenadorForm(request.POST)
@@ -193,6 +196,7 @@ def busqueda_entrenador(request):
         "form": BusquedaFormEntrenador(),
     }
     return render(request, "entrenador/entrenadores.html", contexto)
+
 
 def puntuar_entrenador(request, entrenador_id):
     if request.method == 'POST':
